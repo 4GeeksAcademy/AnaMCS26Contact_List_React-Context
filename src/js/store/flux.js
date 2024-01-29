@@ -1,42 +1,90 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			contacts: [
+
+			],
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			getAllContacts: () => {
+				fetch("https://playground.4geeks.com/apis/fake/contact/agenda/Ana_contacts").then(data => data.json())
+					.then(data => setStore({ contacts: data }));
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			createContact: (contact) => {
+				fetch("https://playground.4geeks.com/apis/fake/contact/", {
+					method: 'POST',
+					headers: {
+						'Content-type': 'application/json'
+					},
+					body: JSON.stringify(contact)
+				})
+				// mando al servidor
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+			addContact: (contact) => {
+				const prevStore = getStore();
+				const actions = getActions();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+				const newContacts = [...prevStore.contacts, contact]
 
-				//reset the global store
-				setStore({ demo: demo });
+
+				const newStore = {
+					...prevStore,
+					contacts: newContacts
+				}
+
+				setStore(newStore);
+				actions.createContact(contact);
+
+			},
+			updateContact: (contact, id) => {
+				fetch(`https://playground.4geeks.com/apis/fake/contact/${id}`, {
+					method: 'PUT',
+					body: JSON.stringify(contact),
+					headers: {
+						'Content-type': 'application/json'
+					}
+				})
+                
+
+				const prevStore = getStore();
+
+				const index= prevStore.contacts.findIndex(contact => contact.id == id);
+                
+				const newContacts = [...prevStore.contacts]
+                newContacts[index]= contact
+
+				const newStore = {
+					...prevStore,
+					contacts: newContacts
+				}
+
+				setStore(newStore);
+			},
+
+			fetchDeleteContact: (id) => {
+				fetch(`https://playground.4geeks.com/apis/fake/contact/${id}`, {
+					method: 'DELETE',
+					headers: {
+						'Content-type': 'application/json'
+					},
+				})
+			},
+
+			deleteContact: (id) => {
+				const prevStore = getStore();
+
+				const actions = getActions();
+
+				const newContacts = prevStore.contacts.filter(contact => contact.id !== id);
+
+
+				const newStore = {
+					...prevStore,
+					contacts: newContacts
+				}
+
+				setStore(newStore);
+				actions.fetchDeleteContact(id);
 			}
 		}
 	};
