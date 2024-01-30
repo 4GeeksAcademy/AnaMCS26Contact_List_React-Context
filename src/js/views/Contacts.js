@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "../../styles/home.css";
+import "../../styles/index.css";
 import { Context } from "../store/appContext";
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
@@ -13,6 +13,8 @@ export const Contacts = () => {
        
 	const { deleteContact } = actions;
 	const navigate = useNavigate();
+
+
 
 	return (
 
@@ -30,16 +32,18 @@ export const Contacts = () => {
 								<ListGroup.Item
 									as="li"
 									key={element.id}
-									className="d-flex justify-content-between align-items-start"
+									className="d-flex"
 									style={{ height: '100px' }}
 								>
-									<img src=".." style={{ width: '40px' }} />
-									<div className="ms-2 me-auto">
+									
+									<div className="content">
 
 										<div className="fw-bold">{element.full_name}  </div>
-										{element.phone}
+										<div className="phone">{element.phone} </div>
+										<div className="email">{element.email}  </div>
+										<div className="address">{element.address}  </div>
 									</div>
-									<div >
+									<div  className="buttons">
 										<Button bg="primary" onClick={() => {navigate(`/EditContactForm/${element.id}`)}} className="m-2">
 											Edit
 										</Button>

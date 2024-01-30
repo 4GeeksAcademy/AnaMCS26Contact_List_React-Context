@@ -5,6 +5,7 @@ import { Contacts } from "./views/Contacts";
 import { ContactForm } from "./views/ContactForm";
 import injectContext from "./store/appContext";
 import { EditContactForm } from "./views/EditContactForm";
+import { Navbar } from "react-bootstrap";
 
 
 //create your first component
@@ -16,6 +17,7 @@ const Layout = () => {
 	return (
 		<div>
 			<BrowserRouter basename={basename}>
+					<Navbar />
 					<Routes>
 						<Route path="/" element={<Contacts />} />
 						<Route path="/contactForm" element={<ContactForm />} />

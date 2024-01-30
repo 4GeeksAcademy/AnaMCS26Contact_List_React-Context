@@ -7,7 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			getAllContacts: () => {
-				fetch("https://playground.4geeks.com/apis/fake/contact/agenda/Ana_contacts").then(data => data.json())
+				fetch("https://playground.4geeks.com/apis/fake/contact/agenda/Ana_agenda").then(data => data.json())
 					.then(data => setStore({ contacts: data }));
 			},
 			createContact: (contact) => {
