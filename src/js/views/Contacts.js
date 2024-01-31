@@ -4,13 +4,14 @@ import { Context } from "../store/appContext";
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
+import rigoImage from "../../img/rigo-baby.jpg";
 
 
 
 export const Contacts = () => {
 
 	const { store, actions } = useContext(Context);
-       
+
 	const { deleteContact } = actions;
 	const navigate = useNavigate();
 
@@ -35,20 +36,28 @@ export const Contacts = () => {
 									className="d-flex"
 									style={{ height: '100px' }}
 								>
-									
-									<div className="content">
+
+									<div className="content row">
+										<div className="image-container row">
+											<img
+												src={rigoImage} 
+												alt="Imagen fija para todos los contactos"
+												className="contact-image rounded-circle img-thumbnail"
+											/>
+										</div>
 
 										<div className="fw-bold">{element.full_name}  </div>
 										<div className="phone">{element.phone} </div>
 										<div className="email">{element.email}  </div>
 										<div className="address">{element.address}  </div>
 									</div>
-									<div  className="buttons">
-										<Button bg="primary" onClick={() => {navigate(`/EditContactForm/${element.id}`)}} className="m-2">
+									<div className="buttons">
+										<Button bg="primary" onClick={() => { navigate(`/EditContactForm/${element.id}`) }} className="m-2">
 											Edit
 										</Button>
-										<Button onClick={() => {deleteContact(element.id); 
-											}}bg="primary" className="m-2">
+										<Button onClick={() => {
+											deleteContact(element.id);
+										}} bg="primary" className="m-2">
 											Trash
 										</Button>
 									</div>
@@ -58,7 +67,7 @@ export const Contacts = () => {
 				</ul>
 
 				<div>
-					<Button onClick={() => {navigate("/ContactForm")}}>
+					<Button onClick={() => { navigate("/ContactForm") }}>
 						Add Contact
 					</Button>
 				</div>

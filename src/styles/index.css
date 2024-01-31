@@ -1,1 +1,68 @@
+.contact-image {
+    width: 80px; /* Ajusta el tamaño según sea necesario */
+    height: 80px;
+    object-fit: cover; /* Esto asegura que la imagen mantiene sus proporciones */
+    border-radius: 50%; /* Puedes ajustar el redondeo de la imagen si lo deseas */
+  }
+  
+  .image-container {
+    margin-right: 20px; /* Ajusta el margen entre la imagen y el contenido */
+  }
 
+  .list-group-item {
+    overflow: visible; 
+    width: 100%;
+    height: 500px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos dentro del list-group-item */
+  }
+  
+  .image-container {
+    width: 100px;
+    height: 100%;
+    margin-left: 10px; /* Ajusta el margen entre la imagen y el contenido */
+  }
+  
+  .content {
+    width: calc(100% - 100px); /* Ajusta el ancho del contenido según sea necesario, teniendo en cuenta el espacio ocupado por la imagen y el margen */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .buttons {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  /* Ajusta el texto a la izquierda */
+  .content .fw-bold,
+  .content .phone,
+  .content .email,
+  .content .address {
+    text-align: left;
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+  }
+
+
+.info-icon{
+    margin-right: 15px;
+}
+
+
+
+.formInput{
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+}
+
+
+   
